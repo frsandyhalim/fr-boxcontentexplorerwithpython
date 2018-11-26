@@ -13,16 +13,11 @@ auth = JWTAuth(
   rsa_private_key_passphrase=config.private_key_passphrase
 )
 
-
 # Obtain client auth
 access_token = auth.authenticate_instance()
 client = Client(auth)
-print access_token
-print config.fid
 
-me = client.user(user_id='me').get(fields=['login'])
-print('The email of the user is: {0}'.format(me['login']))
-
+# Render HTML using Flask
 app = Flask(__name__)
 @app.route('/')
 def hello():
